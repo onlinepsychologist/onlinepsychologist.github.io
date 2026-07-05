@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free mental health tools: PHQ-9 depression screener, GAD-7 anxiety screener, BMI calculator, mood tracker, and more.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools.html">
+    <meta property="og:title" content="Free Mental Health Tools & Psychology Calculators">
+    <meta property="og:description" content="Free PHQ-9, GAD-7, BMI calculator, mood tracker, and SPSS statistical tools for psychology students.">
+    <meta property="og:url" content="https://mzpakistani9-commits.github.io/onlinepsychologist/tools.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Psychology Tools &amp; Calculators">
+    <meta name="twitter:description" content="Mental health screeners, BMI calculator, mood tracker, and SPSS statistics tools.">
+    <title>Free Psychology Tools &amp; Calculators | Online Psychologist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tools-section { padding: 5rem 0; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .tool-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); transition: all 0.3s ease; text-decoration: none; color: inherit; display: block; }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .tool-icon { width: 70px; height: 70px; background: var(--gradient-soft); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .tool-icon i { color: var(--primary); width: 35px; height: 35px; }
+        .tool-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .tool-card p { color: var(--text-light); line-height: 1.6; margin-bottom: 1rem; font-size: 0.95rem; }
+        .tool-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; }
+        .badge-mental { background: #EBF4FF; color: #2B6CB0; }
+        .badge-stats { background: #F0FFF4; color: #276749; }
+        .badge-health { background: #FFFAF0; color: #C05621; }
+        .badge-utility { background: #FAF5FF; color: #6B46C1; }
+        .tools-intro { max-width: 800px; margin: 0 auto 3rem; text-align: center; color: var(--text-light); line-height: 1.8; font-size: 1.1rem; }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Me</a>
+                <a href="services.html">Services</a>
+                <a href="tools.html" class="active">Tools</a>
+                <a href="mpai-assessment.html">Assessment</a>
+                <a href="books.html">Books</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Free Psychology Tools</h1>
+            <p class="page-subtitle">Evidence-based screeners, calculators, and statistical tools for mental health and research</p>
+        </div>
+    </section>
+
+    <section class="tools-section">
+        <div class="container">
+            <p class="tools-intro">
+                These tools are designed for educational and self-awareness purposes. 
+                Mental health screeners are not a substitute for professional diagnosis. 
+                If you're struggling, please <a href="contact.html">reach out</a> for proper support.
+            </p>
+            <div class="tools-grid">
+                <a href="tools/phq9-screener.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="heart"></i></div>
+                    <h3>PHQ-9 Depression Screener</h3>
+                    <p>Patient Health Questionnaire — 9-item screening tool for depression severity. Used by clinicians worldwide.</p>
+                    <div><span class="tool-badge badge-mental">Mental Health</span><span class="tool-badge badge-utility">Free</span></div>
+                </a>
+
+                <a href="tools/gad7-screener.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="activity"></i></div>
+                    <h3>GAD-7 Anxiety Screener</h3>
+                    <p>Generalized Anxiety Disorder — 7-item assessment for anxiety severity. Clinically validated.</p>
+                    <div><span class="tool-badge badge-mental">Mental Health</span></div>
+                </a>
+
+                <a href="mpai-assessment.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="users"></i></div>
+                    <h3>MPAI Personality Assessment</h3>
+                    <p>MIND Personality Assessment Instrument — comprehensive 80-item assessment across 8 developmental domains. For clinical intake.</p>
+                    <div><span class="tool-badge badge-mental">Assessment</span></div>
+                </a>
+
+                <a href="tools/bmi-calculator.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="bar-chart-2"></i></div>
+                    <h3>BMI Calculator</h3>
+                    <p>Three modes: Metric (cm/kg), Feet+Inches, or Inches only. Auto-detects feet notation (5.8 = 5'8").</p>
+                    <div><span class="tool-badge badge-health">Health</span></div>
+                </a>
+
+                <a href="tools/mood-tracker.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="sun"></i></div>
+                    <h3>Daily Mood Tracker</h3>
+                    <p>Log your daily mood, add journal notes, and view your mood history over the past month with an interactive chart.</p>
+                    <div><span class="tool-badge badge-mental">Mental Health</span><span class="tool-badge badge-utility">Journal</span></div>
+                </a>
+
+                <a href="tools/ttest-calculator.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="trending-up"></i></div>
+                    <h3>Independent T-Test Calculator</h3>
+                    <p>Compare means between two groups. Enter sample size, mean, and SD for each group to compute t-value and significance.</p>
+                    <div><span class="tool-badge badge-stats">SPSS</span><span class="tool-badge badge-stats">Statistics</span></div>
+                </a>
+
+                <a href="tools/chi-square.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="grid"></i></div>
+                    <h3>Chi-Square Calculator</h3>
+                    <p>Test association between categorical variables. Enter your observed frequencies in a 2x2 or 3x3 table.</p>
+                    <div><span class="tool-badge badge-stats">SPSS</span><span class="tool-badge badge-stats">Statistics</span></div>
+                </a>
+
+                <a href="tools/feet-inches-converter.html" class="tool-card">
+                    <div class="tool-icon"><i data-feather="maximize-2"></i></div>
+                    <h3>Feet to Inches Converter</h3>
+                    <p>Convert feet and inches to total inches, or inches back to feet. Includes quick reference chart.</p>
+                    <div><span class="tool-badge badge-utility">Converter</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="mpai-assessment.html">MPAI Assessment</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="script.js"></script>
+</body>
+</html>

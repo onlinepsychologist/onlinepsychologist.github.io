@@ -1,0 +1,29 @@
+# Muhammad Zubair - Clinical Psychologist & Web Developer
+> Professional online counseling and therapy services. Serving clients across Gulf countries, Pakistan, and India.
+
+## About
+Muhammad Zubair is a Clinical Psychologist with an MS in Clinical Psychology from Bahria University, Lahore. He offers individual therapy, relationship counseling, child & adolescent therapy, and online sessions. He also builds web platforms for mental health professionals.
+
+## Services
+- **Individual Therapy**: One-on-one sessions for anxiety, depression, stress management.
+- **Online Counseling**: Secure, confidential video sessions worldwide.
+- **Child & Adolescent Therapy**: Behavioral, emotional, and learning support.
+- **Cognitive Behavioral Therapy (CBT)**: Evidence-based approach.
+- **Web Development**: Custom mental health websites and platforms.
+
+## Pricing
+- Gulf Countries: AED 75/session
+- International: USD 20/session
+- Package: AED 600/10 sessions
+
+## Contact
+- WhatsApp: +92 318 7036719
+- Email: mzpakistani9@gmail.com
+- Location: Lahore, Punjab, Pakistan
+- Book: https://calendly.com/mzpakistani9
+
+## Key Pages
+- Home: https://mzpakistani9-commits.github.io/onlinepsychologist/
+- About: https://mzpakistani9-commits.github.io/onlinepsychologist/about.html
+- Services: https://mzpakistani9-commits.github.io/onlinepsychologist/services.html
+- Contact: https://mzpakistani9-commits.github.io/onlinepsychologist/contact.html

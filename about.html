@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Muhammad Zubair - MS Clinical Psychologist. 3+ years experience in online therapy, counseling, and mental health services.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/about.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Muhammad Zubair - Online Psychologist">
+    <meta property="og:description" content="MS Clinical Psychologist with 3+ years experience. Specializing in CBT, anxiety therapy, and relationship counseling.">
+    <meta property="og:url" content="https://mzpakistani9-commits.github.io/onlinepsychologist/about.html">
+    <meta property="og:type" content="profile">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Muhammad Zubair - Online Psychologist">
+    <meta name="twitter:description" content="MS Clinical Psychologist from Bahria University. 3+ years experience in therapy and counseling.">
+    
+    <title>About | Online Psychologist - Professional Online Therapy</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <style>
+        /* PAGE-SPECIFIC STYLES ONLY */
+        .page-hero {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profile-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .profile-main,
+        .profile-secondary {
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .profile-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            background: var(--background);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .stat-box i {
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: var(--text-light);
+        }
+
+        /* Education */
+        .education-section {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .education-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-icon i {
+            color: white;
+            width: 35px;
+            height: 35px;
+        }
+
+        .education-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .institution {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .degree-showcase {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+        }
+
+        .degree-showcase h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .degree-image {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary);
+        }
+
+        /* Experience Timeline */
+        .experience-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -48px;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-content {
+            background: var(--background);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-content ul {
+            list-style-position: inside;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        /* Skills */
+        .skills-section {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .skill-category i {
+            color: var(--accent);
+            width: 35px;
+            height: 35px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 1rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border);
+            font-size: 1.1rem;
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-images {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-marker {
+                left: -38px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-main,
+            .profile-secondary {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-primary">MZ</span>
+                <span class="logo-text">Muhammad Zubair</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Me</a>
+                <a href="services.html">Services</a>
+                <a href="tools.html">Tools</a>
+                <a href="mpai-assessment.html">Assessment</a>
+                <a href="books.html">Books</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">About Me</h1>
+            <p class="page-subtitle">Clinical Psychologist | Web Developer | Mental Health Advocate</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container profile-content">
+            <div class="profile-images">
+                <img src="profile_pic1.jpg" alt="Muhammad Zubair" class="profile-main">
+                <img src="profile_pic2.jpg" alt="Muhammad Zubair Professional" class="profile-secondary">
+            </div>
+            <div class="profile-text">
+                <h2>Professional Summary</h2>
+                <p>I am a <strong>motivated and compassionate Clinical Psychologist</strong> with hands-on experience in psychometric testing, diagnosis, counseling, and therapy. I work with children, adolescents, and adults across hospital, school, and clinical settings.</p>
+                
+                <p>Currently, I am <em>expanding my skill set into technology and web development</em>. I'm learning <strong>HTML, CSS, and computer science fundamentals</strong> from scratch with the goal of building digital tools that bridge psychology and technology—making mental health resources more accessible online.</p>
+                
+                <p>My unique combination of <strong>clinical expertise and emerging technical skills</strong> positions me to create innovative, user-friendly mental health platforms and educational content.</p>
+
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <i data-feather="award" aria-hidden="true"></i>
+                        <h3>MS Clinical Psychology</h3>
+                        <p>Bahria University</p>
+                    </div>
+                    <div class="stat-box">
+                        <i data-feather="briefcase" aria-hidden="true"></i>
+                        <h3>3+ Years</h3>
+                        <p>Clinical Experience</p>
+                    </div>
+                    <div class="stat-box">
+                        <i data-feather="users" aria-hidden="true"></i>
+                        <h3>500+</h3>
+                        <p>Clients Helped</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="education-section">
+        <div class="container">
+            <h2 class="section-title">Education & Certifications</h2>
+            <div class="education-grid">
+                <article class="education-card">
+                    <div class="education-icon">
+                        <i data-feather="graduation-cap" aria-hidden="true"></i>
+                    </div>
+                    <h3>MS Clinical Psychology</h3>
+                    <p class="institution">Bahria University, Lahore</p>
+                    <p class="duration">October 2022 – October 2024</p>
+                    <p>Master of Science in Clinical Psychology with focus on evidence-based therapeutic interventions</p>
+                </article>
+
+                <article class="education-card">
+                    <div class="education-icon">
+                        <i data-feather="book" aria-hidden="true"></i>
+                    </div>
+                    <h3>M.Sc. Applied Psychology</h3>
+                    <p class="institution">Government University of Faisalabad</p>
+                    <p class="duration">January 2018 – May 2020</p>
+                    <p>Postgraduate degree in Applied Psychology with clinical training</p>
+                </article>
+
+                <article class="education-card">
+                    <div class="education-icon">
+                        <i data-feather="file-text" aria-hidden="true"></i>
+                    </div>
+                    <h3>Associate Degree</h3>
+                    <p class="institution">Government University of Faisalabad</p>
+                    <p class="duration">January 2016 – January 2018</p>
+                    <p>Associate of Applied Science in Psychology</p>
+                </article>
+            </div>
+
+            <!-- Degree Image -->
+            <div class="degree-showcase">
+                <h3>MS Clinical Psychology Degree</h3>
+                <img src="Ms degree.jpg" alt="MS Clinical Psychology Degree Certificate" class="degree-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Therapist</h3>
+                        <p class="company">Cornerstone School and College, Lahore</p>
+                        <p class="duration">March 2025 – Present</p>
+                        <ul>
+                            <li>Conduct individual and group therapy for students with behavioral, emotional, and learning challenges</li>
+                            <li>Collaborate with teachers and parents to develop individualized support plans</li>
+                            <li>Deliver psychoeducation workshops for staff and parents</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Clinical Psychology Intern</h3>
+                        <p class="company">Mayo Hospital, Lahore - Child Psychiatry Unit</p>
+                        <ul>
+                            <li>Performed assessments and provided support in therapy sessions</li>
+                            <li>Observed and documented behavioral symptoms in child patients</li>
+                            <li>Gained experience in clinical report writing and diagnosis</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Psychology Intern</h3>
+                        <p class="company">Fountain House, Lahore - Adult Psychiatry</p>
+                        <ul>
+                            <li>Assisted in therapeutic interventions for schizophrenia and mood disorders</li>
+                            <li>Gained hands-on experience in psychiatric rehabilitation</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i data-feather="heart" aria-hidden="true"></i> Clinical Psychology</h3>
+                    <ul>
+                        <li>Clinical Report Writing & Documentation</li>
+                        <li>Counseling & Psychotherapy (CBT, Client-Centered)</li>
+                        <li>Clinical Psychometric Testing & Assessment</li>
+                        <li>Diagnosis of Mental Disorders (DSM-5)</li>
+                        <li>Cross-Cultural Competency & Sensitivity</li>
+                        <li>Crisis Intervention & Risk Assessment</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i data-feather="code" aria-hidden="true"></i> Technology</h3>
+                    <ul>
+                        <li>HTML & CSS (Web Development)</li>
+                        <li>Visual Studio Code & Development Tools</li>
+                        <li>Web Development Fundamentals</li>
+                        <li>Logical Thinking & Problem Solving</li>
+                        <li>Digital Platform Management</li>
+                        <li>Online Therapy Platforms & Tools</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@psychologistmuhammadzubair4295" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+</a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i data-feather="facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <i data-feather="message-circle" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="mpai-assessment.html">MPAI Assessment</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone" aria-hidden="true"></i> +92 318 7036719</p>
+                <p><i data-feather="mail" aria-hidden="true"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin" aria-hidden="true"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle" aria-hidden="true"></i>
+    </a>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

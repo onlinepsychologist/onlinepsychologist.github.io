@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free daily mood tracker. Log your mood, add journal notes, and visualize your emotional patterns over time with an interactive chart.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/mood-tracker.html">
+    <meta property="og:title" content="Free Daily Mood Tracker">
+    <meta property="og:description" content="Track your daily mood, journal your thoughts, and view your emotional patterns.">
+    <meta property="og:type" content="website">
+    <title>Daily Mood Tracker | Free Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 800px; margin: 0 auto; }
+        .mood-input-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); margin-bottom: 2rem; }
+        .mood-grid { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
+        .mood-btn { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--border); background: white; cursor: pointer; transition: all 0.3s ease; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; }
+        .mood-btn:hover { transform: scale(1.15); border-color: var(--primary); box-shadow: var(--shadow-md); }
+        .mood-btn.selected { border-color: var(--primary); transform: scale(1.1); box-shadow: 0 0 0 4px rgba(44,82,130,0.2); }
+        .mood-label { text-align: center; font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem; }
+        .mood-option { text-align: center; }
+        .journal-box { margin-top: 1.5rem; }
+        .journal-box textarea { width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; min-height: 100px; resize: vertical; }
+        .journal-box textarea:focus { outline: none; border-color: var(--primary); }
+        .history-section { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); margin-top: 2rem; }
+        .history-section h2 { color: var(--primary); margin-bottom: 0.5rem; }
+        .history-section > p { color: var(--text-light); margin-bottom: 1.5rem; }
+        .chart-container { position: relative; height: 250px; display: flex; align-items: flex-end; gap: 4px; padding: 0 0 30px; }
+        .bar { flex: 1; border-radius: 6px 6px 0 0; min-height: 4px; transition: all 0.3s ease; position: relative; cursor: pointer; }
+        .bar:hover { opacity: 0.8; }
+        .bar:hover .bar-tooltip { display: block; }
+        .bar-tooltip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--text); color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; z-index: 10; margin-bottom: 4px; }
+        .day-label { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) rotate(-45deg); font-size: 0.65rem; color: var(--text-light); white-space: nowrap; transform-origin: left center; }
+        .bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; height: 100%; justify-content: flex-end; }
+        .no-data { text-align: center; padding: 3rem; color: var(--text-light); }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--background); padding: 1.5rem; border-radius: 12px; text-align: center; }
+        .stat-card h3 { font-size: 2rem; color: var(--primary); margin-bottom: 0.25rem; }
+        .stat-card p { font-size: 0.85rem; color: var(--text-light); }
+        .btn-reset { background: transparent; color: var(--text-light); border: 2px solid var(--border); padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 1.1rem; }
+        .btn-reset:hover { border-color: var(--primary); color: var(--primary); }
+        .clear-btn { background: transparent; color: #E53E3E; border: 2px solid #E53E3E; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 0.85rem; }
+        .clear-btn:hover { background: #E53E3E; color: white; }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .mood-input-card { padding: 1.5rem; }
+            .mood-btn { width: 60px; height: 60px; font-size: 1.8rem; }
+            .stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Daily Mood Tracker</h1>
+            <p class="page-subtitle">Log your emotions, journal your thoughts, and discover patterns in your mental wellbeing</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="mood-input-card">
+                <h2 style="color: var(--primary); text-align: center; margin-bottom: 1rem;">How are you feeling today?</h2>
+                <p style="color: var(--text-light); text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    <span id="todayDate"></span>
+                </p>
+
+                <div class="mood-grid" id="moodGrid">
+                    <div class="mood-option">
+                        <button class="mood-btn" data-mood="1" onclick="selectMood(this, 1)">😢</button>
+                        <div class="mood-label">Very Low</div>
+                    </div>
+                    <div class="mood-option">
+                        <button class="mood-btn" data-mood="2" onclick="selectMood(this, 2)">😟</button>
+                        <div class="mood-label">Low</div>
+                    </div>
+                    <div class="mood-option">
+                        <button class="mood-btn" data-mood="3" onclick="selectMood(this, 3)">😐</button>
+                        <div class="mood-label">Okay</div>
+                    </div>
+                    <div class="mood-option">
+                        <button class="mood-btn" data-mood="4" onclick="selectMood(this, 4)">🙂</button>
+                        <div class="mood-label">Good</div>
+                    </div>
+                    <div class="mood-option">
+                        <button class="mood-btn" data-mood="5" onclick="selectMood(this, 5)">😊</button>
+                        <div class="mood-label">Great</div>
+                    </div>
+                </div>
+
+                <div class="journal-box">
+                    <label style="font-weight: 600; color: var(--text); display: block; margin-bottom: 0.5rem;">Journal Note (optional)</label>
+                    <textarea id="journalNote" placeholder="What happened today? How did it affect your mood?"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <button class="btn-primary btn-large" onclick="saveMood()">Save Entry</button>
+                    <button class="btn-reset" onclick="clearToday()">Clear Today</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2>Your Mood History</h2>
+                        <p>Last 30 days at a glance</p>
+                    </div>
+                    <button class="clear-btn" onclick="clearAllData()">Clear All Data</button>
+                </div>
+
+                <div class="stats-row" id="statsRow">
+                    <div class="stat-card"><h3 id="totalEntries">0</h3><p>Entries</p></div>
+                    <div class="stat-card"><h3 id="avgMood">—</h3><p>Average Mood</p></div>
+                    <div class="stat-card"><h3 id="streak">0</h3><p>Day Streak</p></div>
+                </div>
+
+                <div class="chart-container" id="chartContainer">
+                    <div class="no-data" id="noData">No entries yet. Start tracking your mood above!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+        let selectedMood = null;
+        const moodEmojis = ['', '😢', '😟', '😐', '🙂', '😊'];
+        const moodColors = ['', '#E53E3E', '#ED8936', '#ECC94B', '#68D391', '#48BB78'];
+
+        document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        function selectMood(btn, value) {
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedMood = value;
+        }
+
+        function getMoodData() {
+            try { return JSON.parse(localStorage.getItem('moodTracker')) || {}; } catch { return {}; }
+        }
+
+        function saveMood() {
+            if (!selectedMood) { alert('Please select your mood first.'); return; }
+            const today = new Date().toISOString().split('T')[0];
+            const data = getMoodData();
+            data[today] = { mood: selectedMood, note: document.getElementById('journalNote').value.trim() };
+            localStorage.setItem('moodTracker', JSON.stringify(data));
+            selectedMood = null;
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            document.getElementById('journalNote').value = '';
+            renderChart();
+            alert('Mood saved for today!');
+        }
+
+        function clearToday() {
+            const today = new Date().toISOString().split('T')[0];
+            const data = getMoodData();
+            delete data[today];
+            localStorage.setItem('moodTracker', JSON.stringify(data));
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            selectedMood = null;
+            document.getElementById('journalNote').value = '';
+            renderChart();
+        }
+
+        function clearAllData() {
+            if (confirm('Are you sure? This will permanently delete all your mood data.')) {
+                localStorage.removeItem('moodTracker');
+                renderChart();
+            }
+        }
+
+        function renderChart() {
+            const data = getMoodData();
+            const container = document.getElementById('chartContainer');
+            const noData = document.getElementById('noData');
+            const entries = Object.keys(data).sort();
+
+            document.getElementById('totalEntries').textContent = entries.length;
+
+            if (entries.length === 0) {
+                container.innerHTML = '<div class="no-data">No entries yet. Start tracking your mood above!</div>';
+                document.getElementById('avgMood').textContent = '—';
+                document.getElementById('streak').textContent = '0';
+                return;
+            }
+
+            const values = entries.map(d => data[d].mood);
+            const avg = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1);
+            document.getElementById('avgMood').textContent = moodEmojis[Math.round(avg)] + ' ' + avg;
+
+            let streak = 0;
+            const today = new Date().toISOString().split('T')[0];
+            let check = new Date();
+            while (true) {
+                const key = check.toISOString().split('T')[0];
+                if (data[key]) { streak++; check.setDate(check.getDate() - 1); }
+                else break;
+            }
+            document.getElementById('streak').textContent = streak;
+
+            const last30 = [];
+            for (let i = 29; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const key = d.toISOString().split('T')[0];
+                last30.push({ date: key, day: d.getDate(), entry: data[key] || null });
+            }
+
+            container.innerHTML = '';
+            const chartDiv = document.createElement('div');
+            chartDiv.style.cssText = 'display:flex;align-items:flex-end;gap:3px;height:250px;padding:0 0 30px;overflow-x:auto;';
+
+            last30.forEach(item => {
+                const wrapper = document.createElement('div');
+                wrapper.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;position:relative;height:100%;justify-content:flex-end;min-width:20px;';
+
+                if (item.entry) {
+                    const pct = (item.entry.mood / 5) * 100;
+                    const bar = document.createElement('div');
+                    bar.style.cssText = `width:100%;border-radius:4px 4px 0 0;height:${pct}%;background:${moodColors[item.entry.mood]};cursor:pointer;transition:all 0.3s ease;position:relative;min-height:6px;`;
+                    const tooltip = document.createElement('div');
+                    tooltip.style.cssText = 'display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#2D3748;color:white;padding:4px 8px;border-radius:6px;font-size:0.75rem;white-space:nowrap;margin-bottom:4px;z-index:10;';
+                    tooltip.textContent = `${moodEmojis[item.entry.mood]} ${item.entry.note || ''}`;
+                    bar.appendChild(tooltip);
+                    bar.addEventListener('mouseenter', () => tooltip.style.display = 'block');
+                    bar.addEventListener('mouseleave', () => tooltip.style.display = 'none');
+                    wrapper.appendChild(bar);
+                } else {
+                    const bar = document.createElement('div');
+                    bar.style.cssText = 'width:100%;border-radius:4px 4px 0 0;height:4px;background:#EDF2F7;';
+                    wrapper.appendChild(bar);
+                }
+
+                const label = document.createElement('span');
+                label.style.cssText = 'position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);font-size:0.6rem;color:#A0AEC0;white-space:nowrap;';
+                label.textContent = item.day;
+                wrapper.appendChild(label);
+
+                chartDiv.appendChild(wrapper);
+            });
+
+            container.appendChild(chartDiv);
+        }
+
+        renderChart();
+    </script>
+</body>
+</html>

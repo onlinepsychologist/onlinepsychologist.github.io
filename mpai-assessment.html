@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MIND Personality Assessment Instrument (MPAI) — complete online personality assessment covering 8 developmental domains for clinical use.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/mpai-assessment.html">
+    <meta property="og:title" content="MIND Personality Assessment Instrument (MPAI)">
+    <meta property="og:description" content="Comprehensive online personality assessment covering trust, agency, identity, connection, emotion, competence, meaning, and reality testing.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MPAI Personality Assessment">
+    <title>MIND Personality Assessment (MPAI) | Online Psychologist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .assessment-section { padding: 5rem 0; }
+        .assessment-container { max-width: 800px; margin: 0 auto; }
+
+        .disclaimer { background: #FFF5F5; border: 2px solid #FEB2B2; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; color: #C53030; font-size: 0.95rem; line-height: 1.7; display: flex; gap: 1rem; align-items: start; }
+        .disclaimer i { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+
+        .step-indicator { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; }
+        .step-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; background: var(--border); color: var(--text-light); transition: all 0.3s ease; }
+        .step-dot.active { background: var(--primary); color: white; box-shadow: 0 0 0 4px rgba(99,102,241,0.2); }
+        .step-dot.done { background: var(--primary-light); color: white; }
+        .step-line { width: 40px; height: 2px; background: var(--border); align-self: center; }
+        .step-line.done { background: var(--primary-light); }
+
+        .step-content { display: none; animation: fadeInUp 0.4s ease; }
+        .step-content.active { display: block; }
+
+        .step-header { text-align: center; margin-bottom: 2.5rem; }
+        .step-header h2 { font-size: 1.8rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .step-header p { color: var(--text-light); font-size: 1rem; }
+
+        .domain-box { background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 2px solid var(--border); }
+        .domain-title { font-size: 1.3rem; color: var(--primary); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.75rem; }
+        .domain-desc { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .domain-code { display: inline-block; background: var(--gradient-soft); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+
+        .stem-item { margin-bottom: 1.25rem; }
+        .stem-label { font-weight: 500; color: var(--text); margin-bottom: 0.5rem; display: block; }
+        .stem-label .stem-code { color: var(--text-light); font-size: 0.85rem; }
+        .stem-item textarea { width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; font-family: inherit; resize: vertical; transition: border-color 0.2s; min-height: 60px; }
+        .stem-item textarea:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+
+        .likert-item { background: white; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; border: 2px solid var(--border); }
+        .likert-label { font-weight: 500; color: var(--text); margin-bottom: 0.75rem; display: block; }
+        .likert-label .likert-code { color: var(--text-light); font-size: 0.85rem; }
+        .likert-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .likert-opt { flex: 1; min-width: 60px; text-align: center; }
+        .likert-opt input { display: none; }
+        .likert-opt label { display: block; padding: 0.5rem 0.25rem; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.8rem; color: var(--text-light); transition: all 0.2s; text-align: center; }
+        .likert-opt label:hover { border-color: var(--primary-light); background: var(--gradient-soft); }
+        .likert-opt input:checked + label { border-color: var(--primary); background: #EBF4FF; color: var(--primary); font-weight: 600; }
+        .likert-scale-label { text-align: center; margin-bottom: 1rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-light); padding: 0 0.5rem; }
+
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+        .btn-prev { background: transparent; color: var(--text-light); border: 2px solid var(--border); padding: 0.75rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .btn-prev:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-next { background: var(--gradient); color: white; border: none; padding: 0.75rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .btn-next:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-submit { background: var(--gradient); color: white; border: none; padding: 1rem 3rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .review-box { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-lg); margin-top: 2rem; border: 3px solid var(--primary); }
+        .review-box h3 { color: var(--primary); margin-bottom: 1rem; }
+        .review-section { margin-bottom: 1.5rem; }
+        .review-section h4 { color: var(--text); margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .review-item { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .review-item strong { color: var(--text); }
+
+        .result-box { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-lg); text-align: center; display: none; margin-top: 2rem; border: 3px solid var(--primary); }
+        .result-box.visible { display: block; animation: fadeInUp 0.5s ease; }
+        .result-icon { width: 60px; height: 60px; margin: 0 auto 1rem; background: #EBF4FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .result-icon i { color: var(--primary); width: 30px; height: 30px; }
+        .result-box h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .result-box p { color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; }
+        .btn-download { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gradient); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; text-decoration: none; margin: 0.5rem; }
+        .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-print { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; text-decoration: none; margin: 0.5rem; }
+        .btn-print:hover { background: var(--gradient-soft); transform: translateY(-2px); }
+
+        .whatsapp-link { display: inline-flex; align-items: center; gap: 0.5rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; margin: 0.5rem; }
+        .whatsapp-link:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .required-star { color: #E53E3E; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+        .form-group input { width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .progress-text { text-align: center; color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+        .instructions-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 2rem; border: 2px solid var(--border); }
+        .instructions-card h3 { color: var(--primary); margin-bottom: 0.75rem; }
+        .instructions-card ul { padding-left: 1.5rem; color: var(--text-light); line-height: 1.8; }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .likert-options { gap: 0.25rem; }
+            .likert-opt { min-width: 45px; }
+            .likert-opt label { font-size: 0.7rem; padding: 0.4rem 0.1rem; }
+            .step-dot { width: 32px; height: 32px; font-size: 0.75rem; }
+            .step-line { width: 20px; }
+            .nav-buttons { flex-direction: column; }
+            .btn-prev, .btn-next, .btn-submit { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Me</a>
+                <a href="services.html">Services</a>
+                <a href="tools.html">Tools</a>
+                <a href="mpai-assessment.html" class="active">Assessment</a>
+                <a href="books.html">Books</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">MIND Personality Assessment</h1>
+            <p class="page-subtitle">MPAI — Comprehensive personality assessment across 8 developmental domains</p>
+        </div>
+    </section>
+
+    <section class="assessment-section">
+        <div class="container assessment-container">
+
+            <div class="disclaimer">
+                <i data-feather="alert-triangle"></i>
+                <div>
+                    <strong>Clinical Assessment Tool</strong> — This assessment is designed for clinical use with Muhammad Zubair, Clinical Psychologist. Results are for therapeutic purposes and should be interpreted by a qualified mental health professional. Your responses are not stored on any server — you will download your report after completion.
+                </div>
+            </div>
+
+            <div class="progress-text" id="progressText">Step 1 of 5</div>
+            <div class="step-indicator" id="stepIndicator">
+                <div class="step-dot active" data-step="1">1</div>
+                <div class="step-line" data-step="1"></div>
+                <div class="step-dot" data-step="2">2</div>
+                <div class="step-line" data-step="2"></div>
+                <div class="step-dot" data-step="3">3</div>
+                <div class="step-line" data-step="3"></div>
+                <div class="step-dot" data-step="4">4</div>
+                <div class="step-line" data-step="4"></div>
+                <div class="step-dot" data-step="5">5</div>
+            </div>
+
+            <form id="mpaiForm" onsubmit="return false;">
+                <!-- STEP 1: Demographics + Instructions -->
+                <div class="step-content active" data-step="1">
+                    <div class="step-header">
+                        <h2>Welcome</h2>
+                        <p>Please complete both parts honestly. There are no right or wrong answers.</p>
+                    </div>
+
+                    <div class="instructions-card">
+                        <h3>Instructions</h3>
+                        <p style="color: var(--text-light); margin-bottom: 1rem;">This questionnaire has two parts. Please complete both in order.</p>
+                        <ul>
+                            <li><strong>Part A (Sentence Completion):</strong> Complete each sentence to express your true feelings. Write whatever comes to mind.</li>
+                            <li><strong>Part B (Self-Report):</strong> For each statement, select the number that best describes how much you agree.</li>
+                        </ul>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title">Your Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Age <span class="required-star">*</span></label>
+                                <input type="number" id="clientAge" min="1" max="120" step="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <input type="text" id="clientGender">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Education</label>
+                                <input type="text" id="clientEducation">
+                            </div>
+                            <div class="form-group">
+                                <label>Occupation</label>
+                                <input type="text" id="clientOccupation">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="clientDate">
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <div></div>
+                        <button type="button" class="btn-next" onclick="nextStep()">Begin Assessment →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Part A - Sentence Completion (Domains A-D) -->
+                <div class="step-content" data-step="2">
+                    <div class="step-header">
+                        <h2>Part A: Sentence Completion</h2>
+                        <p>Complete each sentence to express your true feelings. Write the first thing that comes to mind.</p>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">A</span> Trust &amp; Safety</h3>
+                        <p class="domain-desc">How you experience safety, reliability, and support from others and the world.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">A1.</span> When I need help, people</label>
+                            <textarea rows="2" data-domain="A" data-item="A1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">A2.</span> The world is</label>
+                            <textarea rows="2" data-domain="A" data-item="A2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">A3.</span> Relying on others</label>
+                            <textarea rows="2" data-domain="A" data-item="A3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">A4.</span> I feel safe when</label>
+                            <textarea rows="2" data-domain="A" data-item="A4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">A5.</span> People in my life</label>
+                            <textarea rows="2" data-domain="A" data-item="A5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">B</span> Autonomy &amp; Agency</h3>
+                        <p class="domain-desc">Your sense of control, decision-making capacity, and personal responsibility.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">B1.</span> I can</label>
+                            <textarea rows="2" data-domain="B" data-item="B1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">B2.</span> When I make decisions</label>
+                            <textarea rows="2" data-domain="B" data-item="B2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">B3.</span> My life is controlled by</label>
+                            <textarea rows="2" data-domain="B" data-item="B3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">B4.</span> I am responsible for</label>
+                            <textarea rows="2" data-domain="B" data-item="B4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">B5.</span> The choices I make</label>
+                            <textarea rows="2" data-domain="B" data-item="B5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">C</span> Identity &amp; Self</h3>
+                        <p class="domain-desc">Your sense of self, authenticity, and inner identity.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">C1.</span> Who I really am</label>
+                            <textarea rows="2" data-domain="C" data-item="C1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">C2.</span> My true self is</label>
+                            <textarea rows="2" data-domain="C" data-item="C2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">C3.</span> I hide</label>
+                            <textarea rows="2" data-domain="C" data-item="C3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">C4.</span> I wish I could be</label>
+                            <textarea rows="2" data-domain="C" data-item="C4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">C5.</span> The mask I wear</label>
+                            <textarea rows="2" data-domain="C" data-item="C5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">D</span> Connection &amp; Relationships</h3>
+                        <p class="domain-desc">How you experience closeness, trust, vulnerability, and attachment.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">D1.</span> Getting close to others</label>
+                            <textarea rows="2" data-domain="D" data-item="D1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">D2.</span> In relationships, I</label>
+                            <textarea rows="2" data-domain="D" data-item="D2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">D3.</span> Being alone</label>
+                            <textarea rows="2" data-domain="D" data-item="D3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">D4.</span> I trust people who</label>
+                            <textarea rows="2" data-domain="D" data-item="D4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">D5.</span> When someone leaves</label>
+                            <textarea rows="2" data-domain="D" data-item="D5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep()">← Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep()">Next →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Part A - Sentence Completion (Domains E-H) -->
+                <div class="step-content" data-step="3">
+                    <div class="step-header">
+                        <h2>Part A: Sentence Completion (Continued)</h2>
+                        <p>Complete each sentence to express your true feelings.</p>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">E</span> Emotion &amp; Regulation</h3>
+                        <p class="domain-desc">How you experience, express, and manage your emotions.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">E1.</span> When I feel angry</label>
+                            <textarea rows="2" data-domain="E" data-item="E1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">E2.</span> Sadness for me</label>
+                            <textarea rows="2" data-domain="E" data-item="E2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">E3.</span> I cope with stress by</label>
+                            <textarea rows="2" data-domain="E" data-item="E3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">E4.</span> My emotions</label>
+                            <textarea rows="2" data-domain="E" data-item="E4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">E5.</span> When I feel overwhelmed</label>
+                            <textarea rows="2" data-domain="E" data-item="E5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">F</span> Competence &amp; Achievement</h3>
+                        <p class="domain-desc">Your sense of ability, self-worth, and orientation toward success and failure.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">F1.</span> When I fail</label>
+                            <textarea rows="2" data-domain="F" data-item="F1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">F2.</span> My abilities are</label>
+                            <textarea rows="2" data-domain="F" data-item="F2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">F3.</span> I compare myself to others</label>
+                            <textarea rows="2" data-domain="F" data-item="F3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">F4.</span> Success for me is</label>
+                            <textarea rows="2" data-domain="F" data-item="F4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">F5.</span> I feel capable when</label>
+                            <textarea rows="2" data-domain="F" data-item="F5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">G</span> Meaning &amp; Purpose</h3>
+                        <p class="domain-desc">Your sense of meaning, value, purpose, and life direction.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">G1.</span> What matters most to me</label>
+                            <textarea rows="2" data-domain="G" data-item="G1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">G2.</span> I find meaning in</label>
+                            <textarea rows="2" data-domain="G" data-item="G2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">G3.</span> Looking back on my life</label>
+                            <textarea rows="2" data-domain="G" data-item="G3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">G4.</span> What I value in myself</label>
+                            <textarea rows="2" data-domain="G" data-item="G4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">G5.</span> My purpose is</label>
+                            <textarea rows="2" data-domain="G" data-item="G5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">H</span> Reality &amp; Awareness</h3>
+                        <p class="domain-desc">Your contact with reality, self-awareness, and insight.</p>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">H1.</span> When I look at myself honestly</label>
+                            <textarea rows="2" data-domain="H" data-item="H1"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">H2.</span> My mind</label>
+                            <textarea rows="2" data-domain="H" data-item="H2"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">H3.</span> What I know to be true</label>
+                            <textarea rows="2" data-domain="H" data-item="H3"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">H4.</span> I lose myself in</label>
+                            <textarea rows="2" data-domain="H" data-item="H4"></textarea>
+                        </div>
+                        <div class="stem-item">
+                            <label class="stem-label"><span class="stem-code">H5.</span> The difference between how I see myself and how others see me</label>
+                            <textarea rows="2" data-domain="H" data-item="H5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep()">← Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep()">Next →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Part B - Self-Report Likert Scales -->
+                <div class="step-content" data-step="4">
+                    <div class="step-header">
+                        <h2>Part B: Self-Report Scales</h2>
+                        <p>For each statement, select the number that best describes how much you agree.</p>
+                    </div>
+
+                    <div style="background: var(--gradient-soft); border-radius: 12px; padding: 1rem; margin-bottom: 2rem; text-align: center;">
+                        <div style="display: flex; justify-content: space-around; font-size: 0.85rem; color: var(--text-light); font-weight: 500;">
+                            <span>1 = Strongly Disagree</span>
+                            <span>2 = Disagree</span>
+                            <span>3 = Neutral</span>
+                            <span>4 = Agree</span>
+                            <span>5 = Strongly Agree</span>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">A</span> Trust &amp; Safety</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">A6.</span> I trust people until they give me a reason not to.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="A6" value="1" id="A6_1"><label for="A6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="A6" value="2" id="A6_2"><label for="A6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="A6" value="3" id="A6_3"><label for="A6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="A6" value="4" id="A6_4"><label for="A6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="A6" value="5" id="A6_5"><label for="A6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">A7.</span> I believe the world is fundamentally safe.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="A7" value="1" id="A7_1"><label for="A7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="A7" value="2" id="A7_2"><label for="A7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="A7" value="3" id="A7_3"><label for="A7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="A7" value="4" id="A7_4"><label for="A7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="A7" value="5" id="A7_5"><label for="A7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">A8.</span> I am comfortable depending on others.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="A8" value="1" id="A8_1"><label for="A8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="A8" value="2" id="A8_2"><label for="A8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="A8" value="3" id="A8_3"><label for="A8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="A8" value="4" id="A8_4"><label for="A8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="A8" value="5" id="A8_5"><label for="A8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">A9.</span> I often feel that people will hurt me if I let my guard down.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="A9" value="1" id="A9_1"><label for="A9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="A9" value="2" id="A9_2"><label for="A9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="A9" value="3" id="A9_3"><label for="A9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="A9" value="4" id="A9_4"><label for="A9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="A9" value="5" id="A9_5"><label for="A9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">A10.</span> I find it hard to ask for help.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="A10" value="1" id="A10_1"><label for="A10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="A10" value="2" id="A10_2"><label for="A10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="A10" value="3" id="A10_3"><label for="A10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="A10" value="4" id="A10_4"><label for="A10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="A10" value="5" id="A10_5"><label for="A10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">B</span> Autonomy &amp; Agency</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">B6.</span> I feel in control of my life choices.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="B6" value="1" id="B6_1"><label for="B6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="B6" value="2" id="B6_2"><label for="B6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="B6" value="3" id="B6_3"><label for="B6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="B6" value="4" id="B6_4"><label for="B6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="B6" value="5" id="B6_5"><label for="B6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">B7.</span> I am confident making decisions.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="B7" value="1" id="B7_1"><label for="B7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="B7" value="2" id="B7_2"><label for="B7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="B7" value="3" id="B7_3"><label for="B7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="B7" value="4" id="B7_4"><label for="B7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="B7" value="5" id="B7_5"><label for="B7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">B8.</span> My life is determined more by me than by outside forces.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="B8" value="1" id="B8_1"><label for="B8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="B8" value="2" id="B8_2"><label for="B8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="B8" value="3" id="B8_3"><label for="B8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="B8" value="4" id="B8_4"><label for="B8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="B8" value="5" id="B8_5"><label for="B8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">B9.</span> I often feel powerless about my direction in life.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="B9" value="1" id="B9_1"><label for="B9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="B9" value="2" id="B9_2"><label for="B9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="B9" value="3" id="B9_3"><label for="B9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="B9" value="4" id="B9_4"><label for="B9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="B9" value="5" id="B9_5"><label for="B9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">B10.</span> I need others to tell me what to do.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="B10" value="1" id="B10_1"><label for="B10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="B10" value="2" id="B10_2"><label for="B10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="B10" value="3" id="B10_3"><label for="B10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="B10" value="4" id="B10_4"><label for="B10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="B10" value="5" id="B10_5"><label for="B10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">C</span> Identity &amp; Self</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">C6.</span> I have a clear sense of who I am.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="C6" value="1" id="C6_1"><label for="C6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="C6" value="2" id="C6_2"><label for="C6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="C6" value="3" id="C6_3"><label for="C6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="C6" value="4" id="C6_4"><label for="C6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="C6" value="5" id="C6_5"><label for="C6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">C7.</span> I like who I am becoming.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="C7" value="1" id="C7_1"><label for="C7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="C7" value="2" id="C7_2"><label for="C7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="C7" value="3" id="C7_3"><label for="C7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="C7" value="4" id="C7_4"><label for="C7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="C7" value="5" id="C7_5"><label for="C7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">C8.</span> I am authentic — I show my real self to others.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="C8" value="1" id="C8_1"><label for="C8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="C8" value="2" id="C8_2"><label for="C8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="C8" value="3" id="C8_3"><label for="C8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="C8" value="4" id="C8_4"><label for="C8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="C8" value="5" id="C8_5"><label for="C8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">C9.</span> I feel like I don't really know myself.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="C9" value="1" id="C9_1"><label for="C9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="C9" value="2" id="C9_2"><label for="C9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="C9" value="3" id="C9_3"><label for="C9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="C9" value="4" id="C9_4"><label for="C9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="C9" value="5" id="C9_5"><label for="C9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">C10.</span> I change who I am depending on who I'm with.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="C10" value="1" id="C10_1"><label for="C10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="C10" value="2" id="C10_2"><label for="C10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="C10" value="3" id="C10_3"><label for="C10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="C10" value="4" id="C10_4"><label for="C10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="C10" value="5" id="C10_5"><label for="C10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">D</span> Connection &amp; Relationships</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">D6.</span> I enjoy close, intimate relationships.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="D6" value="1" id="D6_1"><label for="D6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="D6" value="2" id="D6_2"><label for="D6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="D6" value="3" id="D6_3"><label for="D6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="D6" value="4" id="D6_4"><label for="D6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="D6" value="5" id="D6_5"><label for="D6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">D7.</span> I am comfortable being vulnerable with people I trust.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="D7" value="1" id="D7_1"><label for="D7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="D7" value="2" id="D7_2"><label for="D7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="D7" value="3" id="D7_3"><label for="D7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="D7" value="4" id="D7_4"><label for="D7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="D7" value="5" id="D7_5"><label for="D7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">D8.</span> I believe I am worthy of love.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="D8" value="1" id="D8_1"><label for="D8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="D8" value="2" id="D8_2"><label for="D8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="D8" value="3" id="D8_3"><label for="D8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="D8" value="4" id="D8_4"><label for="D8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="D8" value="5" id="D8_5"><label for="D8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">D9.</span> I am afraid of getting too close to people.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="D9" value="1" id="D9_1"><label for="D9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="D9" value="2" id="D9_2"><label for="D9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="D9" value="3" id="D9_3"><label for="D9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="D9" value="4" id="D9_4"><label for="D9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="D9" value="5" id="D9_5"><label for="D9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">D10.</span> I worry that people will leave me.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="D10" value="1" id="D10_1"><label for="D10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="D10" value="2" id="D10_2"><label for="D10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="D10" value="3" id="D10_3"><label for="D10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="D10" value="4" id="D10_4"><label for="D10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="D10" value="5" id="D10_5"><label for="D10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">E</span> Emotion &amp; Regulation</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">E6.</span> I can manage strong emotions without falling apart.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="E6" value="1" id="E6_1"><label for="E6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="E6" value="2" id="E6_2"><label for="E6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="E6" value="3" id="E6_3"><label for="E6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="E6" value="4" id="E6_4"><label for="E6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="E6" value="5" id="E6_5"><label for="E6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">E7.</span> I understand where my emotions come from.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="E7" value="1" id="E7_1"><label for="E7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="E7" value="2" id="E7_2"><label for="E7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="E7" value="3" id="E7_3"><label for="E7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="E7" value="4" id="E7_4"><label for="E7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="E7" value="5" id="E7_5"><label for="E7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">E8.</span> I have healthy ways to cope with stress.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="E8" value="1" id="E8_1"><label for="E8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="E8" value="2" id="E8_2"><label for="E8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="E8" value="3" id="E8_3"><label for="E8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="E8" value="4" id="E8_4"><label for="E8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="E8" value="5" id="E8_5"><label for="E8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">E9.</span> I often feel overwhelmed by my feelings.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="E9" value="1" id="E9_1"><label for="E9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="E9" value="2" id="E9_2"><label for="E9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="E9" value="3" id="E9_3"><label for="E9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="E9" value="4" id="E9_4"><label for="E9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="E9" value="5" id="E9_5"><label for="E9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">E10.</span> When upset, I do things I later regret.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="E10" value="1" id="E10_1"><label for="E10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="E10" value="2" id="E10_2"><label for="E10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="E10" value="3" id="E10_3"><label for="E10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="E10" value="4" id="E10_4"><label for="E10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="E10" value="5" id="E10_5"><label for="E10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">F</span> Competence &amp; Achievement</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">F6.</span> I believe in my ability to achieve goals.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="F6" value="1" id="F6_1"><label for="F6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="F6" value="2" id="F6_2"><label for="F6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="F6" value="3" id="F6_3"><label for="F6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="F6" value="4" id="F6_4"><label for="F6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="F6" value="5" id="F6_5"><label for="F6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">F7.</span> I can learn from failure.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="F7" value="1" id="F7_1"><label for="F7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="F7" value="2" id="F7_2"><label for="F7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="F7" value="3" id="F7_3"><label for="F7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="F7" value="4" id="F7_4"><label for="F7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="F7" value="5" id="F7_5"><label for="F7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">F8.</span> My skills and talents are valuable.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="F8" value="1" id="F8_1"><label for="F8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="F8" value="2" id="F8_2"><label for="F8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="F8" value="3" id="F8_3"><label for="F8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="F8" value="4" id="F8_4"><label for="F8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="F8" value="5" id="F8_5"><label for="F8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">F9.</span> I feel inferior to others.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="F9" value="1" id="F9_1"><label for="F9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="F9" value="2" id="F9_2"><label for="F9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="F9" value="3" id="F9_3"><label for="F9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="F9" value="4" id="F9_4"><label for="F9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="F9" value="5" id="F9_5"><label for="F9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">F10.</span> I am afraid to try new things because I might fail.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="F10" value="1" id="F10_1"><label for="F10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="F10" value="2" id="F10_2"><label for="F10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="F10" value="3" id="F10_3"><label for="F10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="F10" value="4" id="F10_4"><label for="F10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="F10" value="5" id="F10_5"><label for="F10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">G</span> Meaning &amp; Purpose</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">G6.</span> My life has meaning and purpose.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="G6" value="1" id="G6_1"><label for="G6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="G6" value="2" id="G6_2"><label for="G6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="G6" value="3" id="G6_3"><label for="G6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="G6" value="4" id="G6_4"><label for="G6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="G6" value="5" id="G6_5"><label for="G6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">G7.</span> I have clear values that guide my decisions.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="G7" value="1" id="G7_1"><label for="G7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="G7" value="2" id="G7_2"><label for="G7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="G7" value="3" id="G7_3"><label for="G7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="G7" value="4" id="G7_4"><label for="G7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="G7" value="5" id="G7_5"><label for="G7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">G8.</span> I feel grateful for my life when I look back.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="G8" value="1" id="G8_1"><label for="G8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="G8" value="2" id="G8_2"><label for="G8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="G8" value="3" id="G8_3"><label for="G8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="G8" value="4" id="G8_4"><label for="G8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="G8" value="5" id="G8_5"><label for="G8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">G9.</span> I feel that life is meaningless.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="G9" value="1" id="G9_1"><label for="G9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="G9" value="2" id="G9_2"><label for="G9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="G9" value="3" id="G9_3"><label for="G9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="G9" value="4" id="G9_4"><label for="G9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="G9" value="5" id="G9_5"><label for="G9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">G10.</span> I don't know what I value.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="G10" value="1" id="G10_1"><label for="G10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="G10" value="2" id="G10_2"><label for="G10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="G10" value="3" id="G10_3"><label for="G10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="G10" value="4" id="G10_4"><label for="G10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="G10" value="5" id="G10_5"><label for="G10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="domain-box">
+                        <h3 class="domain-title"><span class="domain-code">H</span> Reality &amp; Awareness</h3>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">H6.</span> I have a realistic understanding of myself.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="H6" value="1" id="H6_1"><label for="H6_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="H6" value="2" id="H6_2"><label for="H6_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="H6" value="3" id="H6_3"><label for="H6_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="H6" value="4" id="H6_4"><label for="H6_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="H6" value="5" id="H6_5"><label for="H6_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">H7.</span> I can see my own blind spots and defenses.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="H7" value="1" id="H7_1"><label for="H7_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="H7" value="2" id="H7_2"><label for="H7_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="H7" value="3" id="H7_3"><label for="H7_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="H7" value="4" id="H7_4"><label for="H7_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="H7" value="5" id="H7_5"><label for="H7_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">H8.</span> I am able to distinguish my perceptions from reality.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="H8" value="1" id="H8_1"><label for="H8_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="H8" value="2" id="H8_2"><label for="H8_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="H8" value="3" id="H8_3"><label for="H8_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="H8" value="4" id="H8_4"><label for="H8_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="H8" value="5" id="H8_5"><label for="H8_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">H9.</span> I often feel disconnected from reality.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="H9" value="1" id="H9_1"><label for="H9_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="H9" value="2" id="H9_2"><label for="H9_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="H9" value="3" id="H9_3"><label for="H9_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="H9" value="4" id="H9_4"><label for="H9_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="H9" value="5" id="H9_5"><label for="H9_5">5</label></div>
+                            </div>
+                        </div>
+                        <div class="likert-item">
+                            <label class="likert-label"><span class="likert-code">H10.</span> People's view of me is very different from how I see myself.</label>
+                            <div class="likert-options">
+                                <div class="likert-opt"><input type="radio" name="H10" value="1" id="H10_1"><label for="H10_1">1</label></div>
+                                <div class="likert-opt"><input type="radio" name="H10" value="2" id="H10_2"><label for="H10_2">2</label></div>
+                                <div class="likert-opt"><input type="radio" name="H10" value="3" id="H10_3"><label for="H10_3">3</label></div>
+                                <div class="likert-opt"><input type="radio" name="H10" value="4" id="H10_4"><label for="H10_4">4</label></div>
+                                <div class="likert-opt"><input type="radio" name="H10" value="5" id="H10_5"><label for="H10_5">5</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep()">← Previous</button>
+                        <button type="button" class="btn-next" onclick="nextStep()">Review →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Review & Download -->
+                <div class="step-content" data-step="5">
+                    <div class="step-header">
+                        <h2>Review &amp; Submit</h2>
+                        <p>Review your responses before downloading your report.</p>
+                    </div>
+
+                    <div class="review-box" id="reviewBox">
+                        <h3>Response Summary</h3>
+                        <div class="review-section" id="reviewDemographics"></div>
+                        <div class="review-section" id="reviewPartA"></div>
+                        <div class="review-section" id="reviewPartB"></div>
+                    </div>
+
+                    <div class="nav-buttons" style="justify-content: center;">
+                        <button type="button" class="btn-prev" onclick="prevStep()">← Previous</button>
+                        <button type="button" class="btn-submit" onclick="submitAssessment()">Generate Report</button>
+                    </div>
+
+                    <div class="result-box" id="resultBox">
+                        <div class="result-icon"><i data-feather="check-circle"></i></div>
+                        <h3>Assessment Complete!</h3>
+                        <p>Thank you for completing the MIND Personality Assessment. Your responses are not stored online. Please download your report and share it with your psychologist.</p>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;">
+                            <button class="btn-download" onclick="downloadTXT()"><i data-feather="download"></i> Download Report (.txt)</button>
+                            <button class="btn-print" onclick="window.print()"><i data-feather="printer"></i> Print</button>
+                        </div>
+                        <p style="margin-top: 1.5rem; font-size: 0.95rem;">
+                            Share your results via <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600;">WhatsApp</a> or email <a href="mailto:mzpakistani9@gmail.com" style="color: var(--primary); font-weight: 600;">mzpakistani9@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Me</a>
+                    <a href="services.html">Services</a>
+                    <a href="tools.html">Free Tools</a>
+                    <a href="mpai-assessment.html">MPAI Assessment</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="services.html">Online Therapy</a>
+                    <a href="services.html">CBT</a>
+                    <a href="services.html">Relationship Counseling</a>
+                    <a href="services.html">Anxiety Treatment</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i data-feather="mail" style="width:16px;height:16px;"></i> mzpakistani9@gmail.com</p>
+                    <p><i data-feather="phone" style="width:16px;height:16px;"></i> +92 318 7036719</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                        <a href="https://www.youtube.com/@psychologistmuhammadzubair4295" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                        <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Muhammad Zubair, MS Clinical Psychologist. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        function updateStepUI() {
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.toggle('active', parseInt(el.dataset.step) === currentStep);
+            });
+            document.querySelectorAll('.step-dot').forEach(el => {
+                const step = parseInt(el.dataset.step);
+                el.classList.toggle('active', step === currentStep);
+                el.classList.toggle('done', step < currentStep);
+            });
+            document.querySelectorAll('.step-line').forEach(el => {
+                const step = parseInt(el.dataset.step);
+                el.classList.toggle('done', step < currentStep);
+            });
+            document.getElementById('progressText').textContent = `Step ${currentStep} of ${totalSteps}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+                if (currentStep === totalSteps) {
+                    buildReview();
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function buildReview() {
+            document.getElementById('reviewBox').style.display = 'block';
+            const age = document.getElementById('clientAge').value || '—';
+            const gender = document.getElementById('clientGender').value || '—';
+            const education = document.getElementById('clientEducation').value || '—';
+            const occupation = document.getElementById('clientOccupation').value || '—';
+            const date = document.getElementById('clientDate').value || new Date().toISOString().split('T')[0];
+
+            document.getElementById('reviewDemographics').innerHTML = `
+                <h4>Demographics</h4>
+                <div class="review-item"><strong>Age:</strong> ${age}</div>
+                <div class="review-item"><strong>Gender:</strong> ${gender}</div>
+                <div class="review-item"><strong>Education:</strong> ${education}</div>
+                <div class="review-item"><strong>Occupation:</strong> ${occupation}</div>
+                <div class="review-item"><strong>Date:</strong> ${date}</div>
+            `;
+
+            const domains = ['A','B','C','D','E','F','G','H'];
+            const domainNames = {
+                A: 'Trust & Safety', B: 'Autonomy & Agency', C: 'Identity & Self',
+                D: 'Connection & Relationships', E: 'Emotion & Regulation',
+                F: 'Competence & Achievement', G: 'Meaning & Purpose', H: 'Reality & Awareness'
+            };
+
+            let partAHTML = '<h4>Part A: Sentence Completion</h4>';
+            domains.forEach(d => {
+                let hasContent = false;
+                let items = '';
+                for (let i = 1; i <= 5; i++) {
+                    const val = document.querySelector(`textarea[data-item="${d}${i}"]`)?.value?.trim();
+                    if (val) {
+                        items += `<div class="review-item"><strong>${d}${i}:</strong> ${val}</div>`;
+                        hasContent = true;
+                    }
+                }
+                if (hasContent) {
+                    partAHTML += `<h5 style="color:var(--primary);margin:0.75rem 0 0.25rem;">Domain ${d} — ${domainNames[d]}</h5>` + items;
+                }
+            });
+            document.getElementById('reviewPartA').innerHTML = partAHTML;
+
+            let partBHTML = '<h4>Part B: Self-Report Scales</h4>';
+            domains.forEach(d => {
+                let hasContent = false;
+                let items = '';
+                for (let i = 6; i <= 10; i++) {
+                    const sel = document.querySelector(`input[name="${d}${i}"]:checked`);
+                    if (sel) {
+                        items += `<div class="review-item"><strong>${d}${i}:</strong> ${sel.value}</div>`;
+                        hasContent = true;
+                    }
+                }
+                if (hasContent) {
+                    partBHTML += `<h5 style="color:var(--primary);margin:0.75rem 0 0.25rem;">Domain ${d} — ${domainNames[d]}</h5>` + items;
+                }
+            });
+            document.getElementById('reviewPartB').innerHTML = partBHTML;
+        }
+
+        function submitAssessment() {
+            document.getElementById('reviewBox').style.display = 'none';
+            document.querySelector('.step-content[data-step="5"] .nav-buttons').style.display = 'none';
+            document.getElementById('resultBox').classList.add('visible');
+            feather.replace();
+        }
+
+        function getReportText() {
+            const age = document.getElementById('clientAge').value || '—';
+            const gender = document.getElementById('clientGender').value || '—';
+            const education = document.getElementById('clientEducation').value || '—';
+            const occupation = document.getElementById('clientOccupation').value || '—';
+            const date = document.getElementById('clientDate').value || new Date().toISOString().split('T')[0];
+
+            let text = '========================================\n';
+            text += '  MIND PERSONALITY ASSESSMENT INSTRUMENT\n';
+            text += '  (MPAI) — Client Report\n';
+            text += '========================================\n\n';
+            text += `Date: ${date}\n`;
+            text += `Age: ${age}\n`;
+            text += `Gender: ${gender}\n`;
+            text += `Education: ${education}\n`;
+            text += `Occupation: ${occupation}\n\n`;
+
+            text += '========================================\n';
+            text += '  PART A: Sentence Completion\n';
+            text += '========================================\n\n';
+
+            const domains = ['A','B','C','D','E','F','G','H'];
+            const domainNames = {
+                A: 'Trust & Safety', B: 'Autonomy & Agency', C: 'Identity & Self',
+                D: 'Connection & Relationships', E: 'Emotion & Regulation',
+                F: 'Competence & Achievement', G: 'Meaning & Purpose', H: 'Reality & Awareness'
+            };
+
+            domains.forEach(d => {
+                text += `--- Domain ${d}: ${domainNames[d]} ---\n`;
+                for (let i = 1; i <= 5; i++) {
+                    const val = document.querySelector(`textarea[data-item="${d}${i}"]`)?.value?.trim() || '(not answered)';
+                    text += `  ${d}${i}. ${val}\n`;
+                }
+                text += '\n';
+            });
+
+            text += '========================================\n';
+            text += '  PART B: Self-Report Scales\n';
+            text += '========================================\n\n';
+
+            domains.forEach(d => {
+                text += `--- Domain ${d}: ${domainNames[d]} ---\n`;
+                for (let i = 6; i <= 10; i++) {
+                    const sel = document.querySelector(`input[name="${d}${i}"]:checked`);
+                    const val = sel ? sel.value : '(not answered)';
+                    text += `  ${d}${i}: ${val}\n`;
+                }
+                text += '\n';
+            });
+
+            text += '========================================\n';
+            text += '  End of Report\n';
+            text += '  Clinician: Muhammad Zubair\n';
+            text += '  Contact: mzpakistani9@gmail.com\n';
+            text += '========================================\n';
+
+            return text;
+        }
+
+        function downloadTXT() {
+            const text = getReportText();
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const date = document.getElementById('clientDate').value || new Date().toISOString().split('T')[0];
+            a.download = `MPAI_Assessment_${date}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Set default date
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('clientDate');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+        });
+    </script>
+</body>
+</html>

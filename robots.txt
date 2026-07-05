@@ -1,0 +1,29 @@
+# robots.txt for Muhammad Zubair - Clinical Psychologist
+# https://mzpakistani9-commits.github.io/onlinepsychologist/
+
+# Allow all AI crawlers and search engines
+User-agent: *
+Allow: /
+
+# Allow Google AI Overview and Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Allow OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# Allow Anthropic / Claude
+User-agent: Claude-Web
+Allow: /
+
+# Allow Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Allow Bing AI
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://mzpakistani9-commits.github.io/onlinepsychologist/sitemap.xml

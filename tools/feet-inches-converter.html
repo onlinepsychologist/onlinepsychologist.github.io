@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free feet to inches converter. Convert feet and inches to total inches instantly. Also convert inches back to feet. Simple height converter.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/feet-inches-converter.html">
+    <meta property="og:title" content="Free Feet to Inches Converter">
+    <meta property="og:description" content="Convert feet and inches to total inches instantly. Also convert inches back to feet.">
+    <meta property="og:type" content="website">
+    <title>Feet to Inches Converter | Free Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 600px; margin: 0 auto; }
+        .calc-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); margin-bottom: 2rem; }
+        .calc-card h2 { color: var(--primary); margin-bottom: 0.5rem; }
+        .calc-card > p { color: var(--text-light); margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+        .input-group input { width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1.1rem; transition: all 0.3s ease; }
+        .input-group input:focus { outline: none; border-color: var(--primary); }
+        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .result-box { background: var(--background); padding: 1.5rem; border-radius: 12px; text-align: center; margin-top: 1.5rem; display: none; scroll-margin-top: 100px; }
+        .result-box.visible { display: block; animation: fadeInUp 0.3s ease; }
+        .result-value { font-size: 3rem; font-weight: 700; color: var(--primary); }
+        .result-label { color: var(--text-light); font-size: 1rem; margin-top: 0.25rem; }
+        .swap-btn { background: transparent; border: 2px solid var(--border); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 1rem auto; cursor: pointer; transition: all 0.3s ease; }
+        .swap-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .swap-btn i { width: 22px; height: 22px; }
+        .quick-ref { background: white; border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); }
+        .quick-ref h3 { color: var(--primary); margin-bottom: 1rem; }
+        .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .ref-item { display: flex; justify-content: space-between; padding: 0.5rem 1rem; background: var(--background); border-radius: 8px; font-size: 0.9rem; }
+        .ref-item span:first-child { font-weight: 600; color: var(--text); }
+        .ref-item span:last-child { color: var(--primary); }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .calc-card { padding: 1.5rem; }
+            .row2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Feet to Inches Converter</h1>
+            <p class="page-subtitle">Convert feet and inches to total inches — or inches back to feet</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="calc-card">
+                <h2>Feet + Inches → Total Inches</h2>
+                <p>Enter height in feet and inches to get the total in inches.</p>
+                <div class="row2">
+                    <div class="input-group">
+                        <label>Feet</label>
+                        <input type="number" id="feetInput" placeholder="e.g. 5 or 5.8" min="0" step="0.1">
+                        <small style="color: var(--text-light); font-size: 0.8rem;">Write 5.8 for 5'8" — inches extract automatically</small>
+                    </div>
+                    <div class="input-group">
+                        <label>Extra inches (optional)</label>
+                        <input type="number" id="inchInput" placeholder="e.g. 9" min="0" step="1">
+                    </div>
+                </div>
+                <button class="btn-primary btn-large" onclick="toInches()" style="width:100%;justify-content:center;">Convert to Inches</button>
+                <div class="result-box" id="toInchesResult">
+                    <div class="result-value" id="totalInches">0</div>
+                    <div class="result-label">total inches</div>
+                </div>
+            </div>
+
+            <div class="swap-btn" onclick="scrollToInches()">
+                <i data-feather="arrow-down"></i>
+            </div>
+
+            <div class="calc-card" id="inchesToFeet">
+                <h2>Inches → Feet + Inches</h2>
+                <p>Enter total inches to convert back to feet and inches.</p>
+                <div class="input-group">
+                    <label>Total Inches</label>
+                    <input type="number" id="inchesOnly" placeholder="e.g. 69" min="0" step="1">
+                </div>
+                <button class="btn-primary btn-large" onclick="toFeet()" style="width:100%;justify-content:center;">Convert to Feet</button>
+                <div class="result-box" id="toFeetResult">
+                    <div class="result-value" id="feetResult">0' 0"</div>
+                    <div class="result-label">feet and inches</div>
+                </div>
+            </div>
+
+            <div class="quick-ref">
+                <h3>Quick Reference</h3>
+                <div class="ref-grid">
+                    <div class="ref-item"><span>1 ft</span><span>12 in</span></div>
+                    <div class="ref-item"><span>2 ft</span><span>24 in</span></div>
+                    <div class="ref-item"><span>3 ft</span><span>36 in</span></div>
+                    <div class="ref-item"><span>4 ft</span><span>48 in</span></div>
+                    <div class="ref-item"><span>5 ft</span><span>60 in</span></div>
+                    <div class="ref-item"><span>5'4"</span><span>64 in</span></div>
+                    <div class="ref-item"><span>5'6"</span><span>66 in</span></div>
+                    <div class="ref-item"><span>5'8"</span><span>68 in</span></div>
+                    <div class="ref-item"><span>5'10"</span><span>70 in</span></div>
+                    <div class="ref-item"><span>6 ft</span><span>72 in</span></div>
+                    <div class="ref-item"><span>6'2"</span><span>74 in</span></div>
+                    <div class="ref-item"><span>6'4"</span><span>76 in</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+        function toInches() {
+            const feetStr = document.getElementById('feetInput').value;
+            let ftInt = 0, decInc = 0;
+            if (feetStr.includes('.')) {
+                const parts = feetStr.split('.');
+                ftInt = parseInt(parts[0]) || 0;
+                decInc = parseInt(parts[1].slice(0, 2)) || 0;
+            } else {
+                ftInt = parseInt(feetStr) || 0;
+            }
+            const inc = parseFloat(document.getElementById('inchInput').value) || 0;
+            const total = ftInt * 12 + decInc + inc;
+            document.getElementById('totalInches').textContent = total;
+            const r = document.getElementById('toInchesResult');
+            r.classList.add('visible');
+            r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function toFeet() {
+            const total = parseFloat(document.getElementById('inchesOnly').value);
+            if (!total && total !== 0) { alert('Enter a number.'); return; }
+            if (total < 0) { alert('Value must be positive.'); return; }
+            const ft = Math.floor(total / 12);
+            const inc = Math.round(total % 12);
+            document.getElementById('feetResult').textContent = `${ft}' ${inc}"`;
+            const r = document.getElementById('toFeetResult');
+            r.classList.add('visible');
+            r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function scrollToInches() {
+            document.getElementById('inchesToFeet').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

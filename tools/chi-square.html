@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free chi-square test calculator for contingency tables. Test association between categorical variables. Ideal for SPSS and research data analysis.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/chi-square.html">
+    <meta property="og:title" content="Free Chi-Square Test Calculator for SPSS & Research">
+    <meta property="og:description" content="Calculate chi-square statistic for contingency tables online. Test categorical variable associations.">
+    <meta property="og:type" content="website">
+    <title>Chi-Square Calculator | SPSS Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 700px; margin: 0 auto; }
+        .calc-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); }
+        .table-select { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: var(--background); padding: 0.5rem; border-radius: 12px; }
+        .table-btn { flex: 1; padding: 0.75rem; text-align: center; border: none; background: transparent; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--text-light); transition: all 0.3s ease; }
+        .table-btn.active { background: white; color: var(--primary); box-shadow: var(--shadow-sm); }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+        td { padding: 0.5rem; text-align: center; }
+        td input { width: 80px; padding: 0.7rem; border: 2px solid var(--border); border-radius: 8px; text-align: center; font-size: 1rem; }
+        td input:focus { outline: none; border-color: var(--primary); }
+        .row-label { font-weight: 600; color: var(--text); font-size: 0.9rem; }
+        .result-box { margin-top: 2rem; padding: 2rem; border-radius: 16px; background: var(--background); text-align: center; display: none; scroll-margin-top: 100px; }
+        .result-box.visible { display: block; animation: fadeInUp 0.5s ease; }
+        .result-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .result-label { font-size: 1.1rem; color: var(--text-light); margin: 0.5rem 0; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+        .result-item { background: white; padding: 1rem; border-radius: 10px; }
+        .result-item h4 { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.25rem; }
+        .result-item p { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .calc-card { padding: 1.5rem; }
+            td input { width: 60px; padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Chi-Square Calculator</h1>
+            <p class="page-subtitle">Test the association between categorical variables — for research and data analysis</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="calc-card">
+                <div class="table-select" id="tableSelect">
+                    <button class="table-btn active" onclick="setTableSize(2)">2 × 2</button>
+                    <button class="table-btn" onclick="setTableSize(3)">3 × 3</button>
+                </div>
+
+                <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem; text-align: center;">
+                    Enter observed frequencies in each cell
+                </p>
+
+                <div id="tableContainer"></div>
+
+                <button class="btn-primary btn-large" onclick="calculateChiSquare()" style="width:100%;justify-content:center;">Calculate Chi-Square</button>
+
+                <div class="result-box" id="resultBox">
+                    <div class="result-value" id="chiValue">0.00</div>
+                    <div class="result-label">χ² value</div>
+                    <div style="margin: 1rem 0;">
+                        <span style="font-size: 1.5rem; font-weight: 700;" id="chiSig">Not significant</span>
+                    </div>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <h4>Degrees of Freedom (df)</h4>
+                            <p id="chiDf">0</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>p-value</h4>
+                            <p id="chiP">0.000</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>Total N</h4>
+                            <p id="chiN">0</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>Minimum Expected</h4>
+                            <p id="minExpected">0.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+        let tableSize = 2;
+
+        function setTableSize(size) {
+            tableSize = size;
+            document.querySelectorAll('.table-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.table-btn[onclick*="${size}"]`).classList.add('active');
+            renderTable();
+            document.getElementById('resultBox').classList.remove('visible');
+        }
+
+        function renderTable() {
+            const container = document.getElementById('tableContainer');
+            const labels = ['Low', 'Medium', 'High'];
+            let html = '<table>';
+            html += '<tr><td></td>';
+            for (let j = 0; j < tableSize; j++) {
+                html += `<td class="row-label">Group ${j + 1}</td>`;
+            }
+            html += '</tr>';
+            for (let i = 0; i < tableSize; i++) {
+                html += `<tr><td class="row-label">${labels[i] || 'Category ' + (i+1)}</td>`;
+                for (let j = 0; j < tableSize; j++) {
+                    html += `<td><input type="number" id="cell_${i}_${j}" value="0" min="0" step="1"></td>`;
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            container.innerHTML = html;
+            document.getElementById('resultBox').classList.remove('visible');
+        }
+
+        function calculateChiSquare() {
+            const observed = [];
+            let total = 0;
+            let hasNonZero = false;
+            for (let i = 0; i < tableSize; i++) {
+                observed[i] = [];
+                for (let j = 0; j < tableSize; j++) {
+                    const val = parseFloat(document.getElementById(`cell_${i}_${j}`).value) || 0;
+                    observed[i][j] = val;
+                    total += val;
+                    if (val > 0) hasNonZero = true;
+                }
+            }
+
+            if (!hasNonZero || total === 0) {
+                alert('Please enter valid observed frequencies.');
+                return;
+            }
+
+            const rowSums = observed.map(row => row.reduce((a, b) => a + b, 0));
+            const colSums = [];
+            for (let j = 0; j < tableSize; j++) {
+                let sum = 0;
+                for (let i = 0; i < tableSize; i++) sum += observed[i][j];
+                colSums[j] = sum;
+            }
+
+            let chiSq = 0;
+            let minExpected = Infinity;
+            for (let i = 0; i < tableSize; i++) {
+                for (let j = 0; j < tableSize; j++) {
+                    const expected = (rowSums[i] * colSums[j]) / total;
+                    if (expected < minExpected) minExpected = expected;
+                    if (expected > 0) {
+                        chiSq += (observed[i][j] - expected) ** 2 / expected;
+                    }
+                }
+            }
+
+            const df = (tableSize - 1) * (tableSize - 1);
+            const p = 1 - chiSquareCDF(chiSq, df);
+
+            document.getElementById('chiValue').textContent = chiSq.toFixed(4);
+            document.getElementById('chiDf').textContent = df;
+            document.getElementById('chiP').textContent = p.toFixed(4);
+            document.getElementById('chiN').textContent = total;
+            document.getElementById('minExpected').textContent = minExpected.toFixed(2);
+
+            const sig = document.getElementById('chiSig');
+            if (p < 0.001) {
+                sig.textContent = 'Highly significant ***';
+                sig.style.color = '#48BB78';
+            } else if (p < 0.01) {
+                sig.textContent = 'Significant **';
+                sig.style.color = '#48BB78';
+            } else if (p < 0.05) {
+                sig.textContent = 'Significant *';
+                sig.style.color = '#68D391';
+            } else {
+                sig.textContent = 'Not significant (ns)';
+                sig.style.color = '#A0AEC0';
+            }
+
+            if (minExpected < 5) {
+                document.getElementById('minExpected').style.color = '#E53E3E';
+            } else {
+                document.getElementById('minExpected').style.color = '#48BB78';
+            }
+
+            document.getElementById('resultBox').classList.add('visible');
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function chiSquareCDF(x, k) {
+            if (x <= 0) return 0;
+            return incompleteGamma(k / 2, x / 2);
+        }
+
+        function incompleteGamma(a, x) {
+            if (x <= 0) return 0;
+            const epsilon = 3e-12;
+            const maxIter = 200;
+            let sum = 1 / a;
+            let term = 1 / a;
+            for (let i = 1; i <= maxIter; i++) {
+                term *= x / (a + i);
+                sum += term;
+                if (Math.abs(term) < Math.abs(sum) * epsilon) break;
+            }
+            return sum * Math.exp(-x + a * Math.log(x) - lgamma(a));
+        }
+
+        function lgamma(z) {
+            if (z < 0.5) {
+                return Math.log(Math.PI / Math.sin(Math.PI * z)) - lgamma(1 - z);
+            }
+            z -= 1;
+            const g = 7;
+            const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+            let x = c[0];
+            for (let i = 1; i < g + 2; i++) {
+                x += c[i] / (z + i);
+            }
+            const t = z + g + 0.5;
+            return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>

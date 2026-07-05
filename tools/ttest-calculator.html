@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free independent t-test calculator for psychology students and researchers. Compare means between two groups with t-value and p-value results.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/ttest-calculator.html">
+    <meta property="og:title" content="Free Independent T-Test Calculator for SPSS & Research">
+    <meta property="og:description" content="Calculate independent samples t-test online. Enter group stats for instant t-value and significance.">
+    <meta property="og:type" content="website">
+    <title>Independent T-Test Calculator | SPSS Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 700px; margin: 0 auto; }
+        .calc-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-md); border: 2px solid var(--border); }
+        .group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .group-box { padding: 1.5rem; background: var(--background); border-radius: 12px; border: 2px solid var(--border); }
+        .group-box h3 { font-size: 1.3rem; color: var(--primary); margin-bottom: 1rem; text-align: center; }
+        .input-group { margin-bottom: 1rem; }
+        .input-group label { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; font-size: 0.95rem; }
+        .input-group input { width: 100%; padding: 0.8rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; }
+        .input-group input:focus { outline: none; border-color: var(--primary); }
+        .result-box { margin-top: 2rem; padding: 2rem; border-radius: 16px; background: var(--background); text-align: center; display: none; scroll-margin-top: 100px; }
+        .result-box.visible { display: block; animation: fadeInUp 0.5s ease; }
+        .result-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .result-label { font-size: 1.1rem; color: var(--text-light); margin: 0.5rem 0; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+        .result-item { background: white; padding: 1rem; border-radius: 10px; }
+        .result-item h4 { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.25rem; }
+        .result-item p { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+        .formula-box { background: #F7FAFC; padding: 1rem; border-radius: 8px; margin-top: 1.5rem; font-family: monospace; font-size: 0.9rem; text-align: center; color: var(--text-light); }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .group-grid { grid-template-columns: 1fr; }
+            .calc-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Independent T-Test Calculator</h1>
+            <p class="page-subtitle">Compare means between two independent groups — for SPSS, research, and data analysis</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="calc-card">
+                <div class="group-grid">
+                    <div class="group-box">
+                        <h3>Group 1</h3>
+                        <div class="input-group">
+                            <label>Sample Size (n)</label>
+                            <input type="number" id="n1" placeholder="e.g. 30" min="2" step="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Mean</label>
+                            <input type="number" id="mean1" placeholder="e.g. 25.4" step="any">
+                        </div>
+                        <div class="input-group">
+                            <label>Standard Deviation (SD)</label>
+                            <input type="number" id="sd1" placeholder="e.g. 5.2" min="0" step="any">
+                        </div>
+                    </div>
+                    <div class="group-box">
+                        <h3>Group 2</h3>
+                        <div class="input-group">
+                            <label>Sample Size (n)</label>
+                            <input type="number" id="n2" placeholder="e.g. 30" min="2" step="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Mean</label>
+                            <input type="number" id="mean2" placeholder="e.g. 22.1" step="any">
+                        </div>
+                        <div class="input-group">
+                            <label>Standard Deviation (SD)</label>
+                            <input type="number" id="sd2" placeholder="e.g. 4.8" min="0" step="any">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary btn-large" onclick="calculateTTest()" style="width:100%;justify-content:center;">Calculate T-Test</button>
+
+                <div class="result-box" id="resultBox">
+                    <div class="result-value" id="tValue">0.00</div>
+                    <div class="result-label">t-value</div>
+                    <div style="margin: 1rem 0;">
+                        <span style="font-size: 1.5rem; font-weight: 700;" id="significance">Not significant</span>
+                    </div>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <h4>Degrees of Freedom (df)</h4>
+                            <p id="dfValue">0</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>p-value (two-tailed)</h4>
+                            <p id="pValue">0.000</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>Mean Difference</h4>
+                            <p id="meanDiff">0.00</p>
+                        </div>
+                        <div class="result-item">
+                            <h4>Pooled SE</h4>
+                            <p id="pooledSE">0.00</p>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        t = (M₁ − M₂) / (sₚ × √(1/n₁ + 1/n₂)) &nbsp; where &nbsp; sₚ² = ((n₁−1)SD₁² + (n₂−1)SD₂²) / (n₁+n₂−2)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+        function calculateTTest() {
+            const n1 = parseFloat(document.getElementById('n1').value);
+            const m1 = parseFloat(document.getElementById('mean1').value);
+            const s1 = parseFloat(document.getElementById('sd1').value);
+            const n2 = parseFloat(document.getElementById('n2').value);
+            const m2 = parseFloat(document.getElementById('mean2').value);
+            const s2 = parseFloat(document.getElementById('sd2').value);
+
+            if (!n1 || !m1 || !s1 || !n2 || !m2 || !s2 || n1 < 2 || n2 < 2 || s1 <= 0 || s2 <= 0) {
+                alert('Please enter valid values for all fields. Sample size must be at least 2, SD must be positive.');
+                return;
+            }
+
+            const sp = Math.sqrt(((n1-1)*s1*s1 + (n2-1)*s2*s2) / (n1+n2-2));
+            const se = sp * Math.sqrt(1/n1 + 1/n2);
+            const t = (m1 - m2) / se;
+            const df = n1 + n2 - 2;
+            const meanDiff = m1 - m2;
+
+            document.getElementById('tValue').textContent = t.toFixed(4);
+            document.getElementById('dfValue').textContent = df;
+            document.getElementById('meanDiff').textContent = meanDiff.toFixed(2);
+            document.getElementById('pooledSE').textContent = se.toFixed(4);
+
+            const absT = Math.abs(t);
+            let p;
+            if (df <= 0) p = 1;
+            else {
+                const x = df / (df + absT * absT);
+                p = 2 * (1 - incompleteBeta(df / 2, 0.5, x));
+            }
+
+            document.getElementById('pValue').textContent = p.toFixed(4);
+
+            const sig = document.getElementById('significance');
+            if (p < 0.001) {
+                sig.textContent = 'Highly significant ***';
+                sig.style.color = '#48BB78';
+            } else if (p < 0.01) {
+                sig.textContent = 'Significant **';
+                sig.style.color = '#48BB78';
+            } else if (p < 0.05) {
+                sig.textContent = 'Significant *';
+                sig.style.color = '#68D391';
+            } else {
+                sig.textContent = 'Not significant (ns)';
+                sig.style.color = '#A0AEC0';
+            }
+
+            document.getElementById('resultBox').classList.add('visible');
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function incompleteBeta(a, b, x) {
+            if (x < 0 || x > 1) return 0;
+            if (x === 0 || x === 1) return 0;
+            const bt = Math.exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+            if (x < (a + 1) / (a + b + 2)) {
+                return bt * contFrac(a, b, x) / a;
+            } else {
+                return 1 - bt * contFrac(b, a, 1 - x) / b;
+            }
+        }
+
+        function contFrac(a, b, x) {
+            const maxIter = 200;
+            const epsilon = 3e-12;
+            let qab = a + b;
+            let qap = a + 1;
+            let qam = a - 1;
+            let c = 1;
+            let d = 1 - qab * x / qap;
+            if (Math.abs(d) < 1e-30) d = 1e-30;
+            d = 1 / d;
+            let result = d;
+            for (let m = 1; m <= maxIter; m++) {
+                let m2 = 2 * m;
+                let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+                d = 1 + aa * d;
+                if (Math.abs(d) < 1e-30) d = 1e-30;
+                c = 1 + aa / c;
+                if (Math.abs(c) < 1e-30) c = 1e-30;
+                d = 1 / d;
+                result *= d * c;
+                aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+                d = 1 + aa * d;
+                if (Math.abs(d) < 1e-30) d = 1e-30;
+                c = 1 + aa / c;
+                if (Math.abs(c) < 1e-30) c = 1e-30;
+                d = 1 / d;
+                let delta = d * c;
+                result *= delta;
+                if (Math.abs(delta - 1) < epsilon) break;
+            }
+            return result;
+        }
+
+        function lgamma(z) {
+            if (z < 0.5) {
+                return Math.log(Math.PI / Math.sin(Math.PI * z)) - lgamma(1 - z);
+            }
+            z -= 1;
+            const g = 7;
+            const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+            let x = c[0];
+            for (let i = 1; i < g + 2; i++) {
+                x += c[i] / (z + i);
+            }
+            const t = z + g + 0.5;
+            return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+        }
+    </script>
+</body>
+</html>

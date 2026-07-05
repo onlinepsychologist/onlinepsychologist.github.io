@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free psychology books and resources by Clinical Psychologist Muhammad Zubair. Download Urdu and English books on clinical psychology.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/books.html">
+    <meta property="og:title" content="Free Psychology Books &amp; Resources | Online Psychologist">
+    <meta property="og:description" content="Download free clinical psychology books in Urdu and English. Worksheets, guides, and educational resources.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Psychology Books &amp; Resources">
+    <title>Psychology Books &amp; Resources | Online Psychologist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .books-section { padding: 5rem 0; }
+        .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+        .book-card { background: white; border-radius: 20px; box-shadow: var(--shadow-md); border: 2px solid var(--border); overflow: hidden; transition: all 0.3s ease; }
+        .book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+        .book-cover { background: var(--gradient-soft); padding: 3rem; display: flex; align-items: center; justify-content: center; min-height: 250px; position: relative; }
+        .book-cover-icon { width: 100px; height: 100px; background: var(--gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; }
+        .book-cover-icon i { color: white; width: 50px; height: 50px; }
+        .book-body { padding: 2rem; }
+        .book-body h2 { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .book-author { color: var(--accent); font-weight: 600; margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .book-desc { color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .book-meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .book-meta span { background: var(--background); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 0.4rem; }
+        .book-meta i { width: 16px; height: 16px; }
+        .book-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .download-section { padding: 5rem 0; background: var(--background); text-align: center; }
+        .download-section h2 { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        .download-section p { color: var(--text-light); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+        .resources-section { padding: 5rem 0; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .resource-card { background: white; padding: 2rem; border-radius: 16px; border: 2px solid var(--border); transition: all 0.3s ease; text-align: center; }
+        .resource-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .resource-card i { width: 40px; height: 40px; color: var(--primary); margin-bottom: 1rem; }
+        .resource-card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .resource-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1rem; }
+        .email-form { max-width: 500px; margin: 0 auto; display: flex; gap: 1rem; }
+        .email-form input { flex: 1; padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; }
+        .email-form input:focus { outline: none; border-color: var(--primary); }
+        .lang-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; }
+        .lang-urdu { background: #F0FFF4; color: #276749; }
+        .lang-eng { background: #EBF4FF; color: #2B6CB0; }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .books-grid { grid-template-columns: 1fr; }
+            .email-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Me</a>
+                <a href="services.html">Services</a>
+                <a href="tools.html">Tools</a>
+                <a href="mpai-assessment.html">Assessment</a>
+                <a href="books.html" class="active">Books</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Books & Resources</h1>
+            <p class="page-subtitle">Free educational resources on clinical psychology, philosophy, and the human mind</p>
+        </div>
+    </section>
+
+    <section class="books-section">
+        <div class="container">
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);">
+                        <div class="book-cover-icon" style="background: rgba(255,255,255,0.2);">
+                            <i data-feather="book-open" style="color: white;"></i>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <span class="lang-badge lang-urdu">Urdu</span>
+                        <h2>29 Philosophers & Clinical Psychology</h2>
+                        <p class="book-author">By Muhammad Zubair</p>
+                        <p class="book-desc">
+                            A unique exploration of clinical psychology through the lens of 29 great philosophers. 
+                            This Urdu-language book bridges Eastern philosophical wisdom with modern clinical practice, 
+                            offering insights for both practitioners and students.
+                        </p>
+                        <div class="book-meta">
+                            <span><i data-feather="file-text"></i> PDF</span>
+                            <span><i data-feather="clock"></i> 150+ pages</span>
+                            <span><i data-feather="globe"></i> Urdu</span>
+                        </div>
+                        <div class="book-actions">
+                            <a href="https://wa.me/923187036719?text=I%27m%20interested%20in%20your%20book%20%2229%20Philosophers%20%26%20Clinical%20Psychology%22" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                <i data-feather="download"></i> Get Free Copy
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-cover" style="background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);">
+                        <div class="book-cover-icon" style="background: rgba(255,255,255,0.2);">
+                            <i data-feather="book" style="color: white;"></i>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <span class="lang-badge lang-eng">English</span>
+                        <h2>The Human Mind Through The Ages</h2>
+                        <p class="book-author">By Muhammad Zubair</p>
+                        <p class="book-desc">
+                            A chronological journey through humanity's understanding of the mind — 
+                            from ancient philosophy to modern neuroscience. This comprehensive guide 
+                            traces how our conception of consciousness, mental health, and the self has evolved.
+                        </p>
+                        <div class="book-meta">
+                            <span><i data-feather="file-text"></i> PDF</span>
+                            <span><i data-feather="clock"></i> 200+ pages</span>
+                            <span><i data-feather="globe"></i> English</span>
+                        </div>
+                        <div class="book-actions">
+                            <a href="https://wa.me/923187036719?text=I%27m%20interested%20in%20your%20book%20%22The%20Human%20Mind%20Through%20The%20Ages%22" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                <i data-feather="download"></i> Get Free Copy
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources-section">
+        <div class="container">
+            <h2 class="section-title">More Resources</h2>
+            <p class="section-subtitle">Worksheets, guides, and tools to support your mental health journey</p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i data-feather="file"></i>
+                    <h3>CBT Worksheets</h3>
+                    <p>Cognitive Behavioral Therapy worksheets for thought records, behavioral activation, and cognitive restructuring.</p>
+                    <a href="https://wa.me/923187036719?text=Please%20send%20me%20the%20CBT%20worksheets" target="_blank" rel="noopener noreferrer" class="btn-outline" style="display:inline-block;width:auto;padding:0.6rem 1.5rem;">Request via WhatsApp</a>
+                </div>
+                <div class="resource-card">
+                    <i data-feather="file"></i>
+                    <h3>DBT Worksheets</h3>
+                    <p>Dialectical Behavior Therapy worksheets for mindfulness, distress tolerance, emotion regulation, and interpersonal effectiveness.</p>
+                    <a href="https://wa.me/923187036719?text=Please%20send%20me%20the%20DBT%20worksheets" target="_blank" rel="noopener noreferrer" class="btn-outline" style="display:inline-block;width:auto;padding:0.6rem 1.5rem;">Request via WhatsApp</a>
+                </div>
+                <div class="resource-card">
+                    <i data-feather="video"></i>
+                    <h3>Psychology Talks</h3>
+                    <p>Recorded sessions and talks on various mental health topics. Available on request for students and professionals.</p>
+                    <a href="https://www.youtube.com/@psychologistmuhammadzubair4295" target="_blank" rel="noopener noreferrer" class="btn-outline" style="display:inline-block;width:auto;padding:0.6rem 1.5rem;">Watch on YouTube</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container cta-content">
+            <h2>Want All Resources in One Bundle?</h2>
+            <p>Contact me on WhatsApp and I'll send you the complete resource pack — books, worksheets, and guides — absolutely free.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/923187036719" class="btn-primary btn-large" target="_blank" rel="noopener noreferrer">
+                    <i data-feather="message-circle"></i> Get Resources on WhatsApp
+                </a>
+                <a href="contact.html" class="btn-outline-white btn-large">
+                    <i data-feather="mail"></i> Ask a Question
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="mpai-assessment.html">MPAI Assessment</a></li>
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="script.js"></script>
+</body>
+</html>

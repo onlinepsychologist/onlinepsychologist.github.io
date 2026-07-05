@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free GAD-7 anxiety screening tool. Complete the 7-item Generalized Anxiety Disorder questionnaire online and get your severity score instantly.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mzpakistani9-commits.github.io/onlinepsychologist/tools/gad7-screener.html">
+    <meta property="og:title" content="Free GAD-7 Anxiety Screener Online">
+    <meta property="og:description" content="Take the GAD-7 anxiety screening questionnaire online. Instant scoring with severity levels.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>GAD-7 Anxiety Screener | Free Online Tool | Muhammad Zubair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .page-hero { background: var(--gradient); color: white; text-align: center; padding: 8rem 0 4rem; }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .tool-section { padding: 5rem 0; }
+        .tool-container { max-width: 800px; margin: 0 auto; }
+        .disclaimer { background: #FFF5F5; border: 2px solid #FEB2B2; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; color: #C53030; font-size: 0.95rem; line-height: 1.7; display: flex; gap: 1rem; align-items: start; }
+        .disclaimer i { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+        .question-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; border: 2px solid var(--border); }
+        .question-number { display: inline-block; background: var(--gradient); color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.85rem; font-weight: 700; margin-right: 0.75rem; }
+        .question-text { font-size: 1.1rem; color: var(--text); font-weight: 500; margin-bottom: 1rem; }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .option-label { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.2s ease; }
+        .option-label:hover { border-color: var(--primary-light); background: var(--gradient-soft); }
+        .option-label:has(input:checked) { border-color: var(--primary); background: #EBF4FF; }
+        .option-label input:checked + span { color: var(--primary); font-weight: 600; }
+        .option-label input { accent-color: var(--primary); }
+        .option-label span { font-size: 0.9rem; color: var(--text-light); }
+        .result-box { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-lg); text-align: center; display: none; margin-top: 2rem; border: 3px solid var(--primary); scroll-margin-top: 100px; }
+        .result-box.visible { display: block; animation: fadeInUp 0.5s ease; }
+        .result-score { font-size: 4rem; font-weight: 700; color: var(--primary); }
+        .result-label { font-size: 1.5rem; color: var(--text); margin: 1rem 0; }
+        .result-desc { color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; }
+        .result-severity { display: inline-block; padding: 0.5rem 2rem; border-radius: 30px; font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .severity-minimal { background: #F0FFF4; color: #276749; }
+        .severity-mild { background: #FFFFF0; color: #975A16; }
+        .severity-moderate { background: #FFFAF0; color: #C05621; }
+        .severity-severe { background: #FED7D7; color: #9B2C2C; }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2rem; }
+            .options { grid-template-columns: 1fr; }
+            .question-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container nav-content">
+            <a href="../index.html" class="logo"><span class="logo-primary">MZ</span><span class="logo-text">Muhammad Zubair</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Me</a>
+                <a href="../services.html">Services</a>
+                <a href="../tools.html" class="active">Tools</a>
+                <a href="../books.html">Books</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="https://calendly.com/mzpakistani9" class="btn-primary" target="_blank" rel="noopener noreferrer">Book Session</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i data-feather="menu"></i></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">GAD-7 Anxiety Screener</h1>
+            <p class="page-subtitle">Generalized Anxiety Disorder — Clinically validated anxiety screening tool</p>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container tool-container">
+            <div class="disclaimer">
+                <i data-feather="alert-triangle"></i>
+                <div>
+                    <strong>Important:</strong> This tool is for educational and self-awareness purposes only. It is NOT a diagnostic instrument.
+                    Only a qualified mental health professional can diagnose anxiety disorders. If you're in crisis, please contact emergency services.
+                </div>
+            </div>
+
+            <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;">
+                Over the <strong>last 2 weeks</strong>, how often have you been bothered by the following problems?
+            </p>
+
+            <form id="gad7Form">
+                <div id="questions"></div>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" class="btn-primary btn-large btn-calc" onclick="calculateGAD7()">Calculate Score</button>
+                    <button type="button" class="btn-reset" onclick="resetGAD7()">Reset</button>
+                </div>
+            </form>
+
+            <div class="result-box" id="resultBox">
+                <div class="result-score" id="resultScore">0</div>
+                <div class="result-severity" id="resultSeverity">Minimal</div>
+                <div class="result-label" id="resultLabel">No significant anxiety symptoms</div>
+                <div class="result-desc" id="resultDesc"></div>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">
+                    <i data-feather="info" style="width: 18px; height: 18px; vertical-align: middle;"></i>
+                    This result is for reference only. Please consult a qualified professional for proper evaluation.
+                </p>
+                <a href="../contact.html" class="btn-primary btn-large">Speak to a Professional</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Muhammad Zubair</h3>
+                <p>Clinical Psychologist & Web Developer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/muhammad-zubair-556444177/" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.facebook.com/psychologisthelp4648" target="_blank" rel="noopener noreferrer"><i data-feather="facebook"></i></a>
+                    <a href="https://wa.me/923187036719" target="_blank" rel="noopener noreferrer"><i data-feather="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../tools.html">Tools</a></li>
+                    <li><a href="../books.html">Books</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i data-feather="phone"></i> +92 318 7036719</p>
+                <p><i data-feather="mail"></i> mzpakistani9@gmail.com</p>
+                <p><i data-feather="map-pin"></i> Lahore, Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Muhammad Zubair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923187036719" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+        <i data-feather="message-circle"></i>
+    </a>
+    <script src="../script.js"></script>
+    <script>
+        const questions = [
+            "Feeling nervous, anxious, or on edge",
+            "Not being able to stop or control worrying",
+            "Worrying too much about different things",
+            "Trouble relaxing",
+            "Being so restless that it's hard to sit still",
+            "Becoming easily annoyed or irritable",
+            "Feeling afraid as if something awful might happen"
+        ];
+        const options = ["Not at all", "Several days", "More than half the days", "Nearly every day"];
+        const scores = [0, 1, 2, 3];
+
+        function renderQuestions() {
+            const container = document.getElementById('questions');
+            questions.forEach((q, i) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div class="question-text"><span class="question-number">${i+1}</span>${q}</div>
+                    <div class="options">${options.map((opt, j) => `
+                        <label class="option-label">
+                            <input type="radio" name="q${i}" value="${scores[j]}" required>
+                            <span>${opt}</span>
+                        </label>
+                    `).join('')}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function calculateGAD7() {
+            let total = 0;
+            let allAnswered = true;
+            for (let i = 0; i < questions.length; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) {
+                    total += parseInt(selected.value);
+                } else {
+                    allAnswered = false;
+                }
+            }
+            if (!allAnswered) {
+                alert('Please answer all 7 questions before calculating.');
+                return;
+            }
+            const resultBox = document.getElementById('resultBox');
+            document.getElementById('resultScore').textContent = total;
+            const severity = document.getElementById('resultSeverity');
+            const label = document.getElementById('resultLabel');
+            const desc = document.getElementById('resultDesc');
+
+            if (total <= 4) {
+                severity.className = 'result-severity severity-minimal';
+                severity.textContent = 'Minimal';
+                label.textContent = 'No significant anxiety symptoms';
+                desc.textContent = 'Your score suggests minimal or no anxiety symptoms. Continue maintaining good mental health practices.';
+            } else if (total <= 9) {
+                severity.className = 'result-severity severity-mild';
+                severity.textContent = 'Mild';
+                label.textContent = 'Mild anxiety symptoms detected';
+                desc.textContent = 'Your score suggests mild anxiety symptoms. Consider relaxation techniques, exercise, and monitoring your stress levels.';
+            } else if (total <= 14) {
+                severity.className = 'result-severity severity-moderate';
+                severity.textContent = 'Moderate';
+                label.textContent = 'Moderate anxiety symptoms detected';
+                desc.textContent = 'Your score suggests moderate anxiety symptoms. Professional support is recommended. Consider booking a session for a comprehensive evaluation.';
+            } else {
+                severity.className = 'result-severity severity-severe';
+                severity.textContent = 'Severe';
+                label.textContent = 'Severe anxiety symptoms detected';
+                desc.textContent = 'Your score suggests severe anxiety symptoms. Professional help is strongly recommended. Please reach out to a mental health professional as soon as possible.';
+            }
+            resultBox.classList.add('visible');
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            feather.replace();
+        }
+
+        function resetGAD7() {
+            document.getElementById('gad7Form').reset();
+            document.getElementById('resultBox').classList.remove('visible');
+        }
+
+        renderQuestions();
+    </script>
+</body>
+</html>
