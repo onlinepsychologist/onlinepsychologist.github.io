@@ -23,7 +23,7 @@ Muhammad Zubair is a Clinical Psychologist with an MS in Clinical Psychology fro
 - Book: https://calendly.com/mzpakistani9
 
 ## Key Pages
-- Home: https://mzpakistani9-commits.github.io/onlinepsychologist/
-- About: https://mzpakistani9-commits.github.io/onlinepsychologist/about.html
-- Services: https://mzpakistani9-commits.github.io/onlinepsychologist/services.html
-- Contact: https://mzpakistani9-commits.github.io/onlinepsychologist/contact.html
+- Home: https://onlinepsychologist.github.io/
+- About: https://onlinepsychologist.github.io/about.html
+- Services: https://onlinepsychologist.github.io/services.html
+- Contact: https://onlinepsychologist.github.io/contact.html

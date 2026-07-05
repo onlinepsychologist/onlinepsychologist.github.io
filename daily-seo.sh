@@ -134,7 +134,7 @@ echo "  Created: blog/$FILENAME"
 # Step 2: Update sitemap
 echo "[2/4] Updating sitemap..."
 SITEMAP="sitemap.xml"
-BLOG_URL="https://mzpakistani9-commits.github.io/onlinepsychologist/blog/$FILENAME"
+BLOG_URL="https://onlinepsychologist.github.io/blog/$FILENAME"
 NEW_ENTRY="  <url>\n    <loc>$BLOG_URL</loc>\n    <lastmod>$DATE</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>"
 
 # Insert before closing </urlset>
@@ -174,7 +174,7 @@ Need support with "$KEYWORD"? I'm available for online therapy.
 Free consultation: https://wa.me/923187036719
 
 [BLOG POST LINK]:
-https://mzpakistani9-commits.github.io/onlinepsychologist/blog/$FILENAME
+https://onlinepsychologist.github.io/blog/$FILENAME
 
 ========================================
 YOUR JOB: Copy-paste these to Facebook & LinkedIn
